@@ -1,7 +1,10 @@
-const Joi = require('joi');
+// const Joi = require('joi');
 
-const categorySchema = Joi.object({
-    name: Joi.string().required()
-  });
+import Joi from 'joi';
 
-  module.exports = { userSchema, productSchema, categorySchema, orderSchema };
+export const categorySchema = Joi.object({
+  name: Joi.string().min(3).max(50).required(),
+  description: Joi.string().max(255)
+});
+
+// export default categorySchema;

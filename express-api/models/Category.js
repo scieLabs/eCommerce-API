@@ -8,25 +8,16 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   logging: false,
 });
 
-const { DataTypes } = require('sequelize');
+// const { DataTypes } = require('sequelize');
+// const sequelize = require('../db/index.js');
 
-module.exports = (sequelize) => {
-  const Category = sequelize.define('Category', {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-  }, {
-    timestamps: true,
-  });
-  return Category;
-};
+// Category Model
+export const Category = sequelize.define('Category', {
+  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+  name: { type: DataTypes.STRING, allowNull: false }
+});
+
+// module.exports = Category;
 
 sequelize.sync();
 

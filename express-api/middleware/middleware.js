@@ -1,26 +1,22 @@
-const Joi = require('joi');
+// const multer = require('multer');
+// const path = require('path');
 
-// Middleware to validate request body based on schema
-const validateRequest = (schema) => {
-  return (req, res, next) => {
-    const { error } = schema.validate(req.body);
-    if (error) {
-      return res.status(400).json({ error: error.details[0].message });
-    }
-    next();
-  };
+import multer from 'multer';
+import path from 'path';
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+
+export const fileUpload = multer({ storage });
+
+export const errorHandler = (err, req, res, next) => {
+  res.status(500).json({ error: err.message });
 };
 
-// Error handling middleware
-const errorHandler = (err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong!' });
-};
-
-// Middleware to check authentication (placeholder example)
-const authenticateUser = (req, res, next) => {
-  // Authentication logic (e.g., JWT verification) would go here
-  next();
-};
-
-module.exports = { validateRequest, errorHandler, authenticateUser };
+// module.exports = { fileUpload, errorHandler };

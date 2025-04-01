@@ -1,10 +1,12 @@
-const Joi = require('joi');
+// const Joi = require('joi');
+import Joi from 'joi';
 
-const productSchema = Joi.object({
-    name: Joi.string().required(),
-    description: Joi.string().required(),
-    price: Joi.number().positive().required(),
-    categoryId: Joi.number().integer().required()
-  });
+export const productSchema = Joi.object({
+  name: Joi.string().min(3).max(100).required(),
+  description: Joi.string().max(500),
+  price: Joi.number().positive().required(),
+  stock: Joi.number().integer().min(0).required(),
+  categoryId: Joi.number().integer().required()
+});
 
-  module.exports = { userSchema, productSchema, categorySchema, orderSchema };
+// module.exports = productSchema;
