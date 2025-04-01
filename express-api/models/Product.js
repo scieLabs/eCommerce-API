@@ -11,7 +11,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const User = sequelize.define('User', {
+  const Product = sequelize.define('Product', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -21,24 +21,24 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true,
-      },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
-    password: {
-      type: DataTypes.STRING,
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    categoryId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   }, {
     timestamps: true,
   });
-  return User;
+  return Product;
 };
 
 sequelize.sync();
 
-export default User;
+export default Product;

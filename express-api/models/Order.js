@@ -11,34 +11,30 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const User = sequelize.define('User', {
+  const Order = sequelize.define('Order', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
-      type: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
+    products: {
+      type: DataTypes.JSON,
       allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true,
-      },
     },
-    password: {
-      type: DataTypes.STRING,
+    total: {
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
   }, {
     timestamps: true,
   });
-  return User;
+  return Order;
 };
 
 sequelize.sync();
 
-export default User;
+export default Order;
