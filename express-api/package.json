@@ -2,9 +2,11 @@
   "name": "express-api",
   "private": true,
   "version": "0.0.0",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node --watch index.js",
+    "start": "node index.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
