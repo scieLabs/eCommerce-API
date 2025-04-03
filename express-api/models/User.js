@@ -8,8 +8,6 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   logging: false,
 });
 
-// const { DataTypes } = require('sequelize');
-// const sequelize = require('../db/index.js');
 
 // User Model
 const User = sequelize.define('User', {
@@ -19,8 +17,7 @@ const User = sequelize.define('User', {
   password: { type: DataTypes.STRING, allowNull: false }
 });
 
-// module.exports = User;
-
 sequelize.sync();
+// not needed?
 
 export default User;

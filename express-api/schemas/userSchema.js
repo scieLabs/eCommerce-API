@@ -1,4 +1,3 @@
-// const Joi = require('joi');
 import Joi from 'joi';
 
 export const userSchema = Joi.object({
@@ -7,5 +6,3 @@ export const userSchema = Joi.object({
   password: Joi.string().min(6).required(),
   role: Joi.string().valid('user', 'admin').default('user')
 });
-
-// module.exports = userSchema;

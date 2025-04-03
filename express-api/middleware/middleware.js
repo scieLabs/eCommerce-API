@@ -1,6 +1,3 @@
-// const multer = require('multer');
-// const path = require('path');
-
 import multer from 'multer';
 import path from 'path';
 
@@ -19,4 +16,4 @@ export const errorHandler = (err, req, res, next) => {
   res.status(500).json({ error: err.message });
 };
 
-// module.exports = { fileUpload, errorHandler };
+export default { fileUpload, errorHandler };
