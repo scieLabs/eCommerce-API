@@ -10,21 +10,14 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   logging: false,
 });
 
-// const { DataTypes } = require('sequelize');
-// const sequelize = require('../db/index.js');
-// const User = require('./User.js');
-// const Product = require('./Product.js');
-
 // Order Model
 const Order = sequelize.define('Order', {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
   userId: { type: DataTypes.INTEGER, allowNull: false, references: { model: User, key: 'id' } },
   productId: { type: DataTypes.INTEGER, allowNull: false, references: { model: Product, key: 'id' } },
   quantity: { type: DataTypes.INTEGER, allowNull: false },
-  status: { type: DataTypes.ENUM('pending', 'shipped', 'delivered'), allowNull: false }
+  total: { type: DataTypes.INTEGER, allowNull: false }
 });
-
-// module.exports = Order;
 
 sequelize.sync();
 

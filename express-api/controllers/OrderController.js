@@ -1,5 +1,4 @@
-// const Order = require('../models/Order.js');
-import Order from '../models/index.js';
+import Order from '../models/Order.js';
 import { orderSchema } from '../schemas/orderSchema.js';
 
 export const createOrder = async (req, res) => {
