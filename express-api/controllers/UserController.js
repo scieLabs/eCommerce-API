@@ -1,4 +1,3 @@
-// const User = require('../models/User.js');
 import User from '../models/User.js'
 import { userSchema } from '../schemas/userSchema.js';
 
