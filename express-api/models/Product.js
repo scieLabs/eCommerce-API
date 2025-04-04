@@ -1,5 +1,10 @@
-const { DataTypes } = require('sequelize');
-import sequelize from './db/index.js';  // Ensure this path is correct
+import { Sequelize, DataTypes } from 'sequelize';
+
+
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  logging: false,
+});
 
 const Product = sequelize.define('Product', {
   id: {
@@ -9,25 +14,25 @@ const Product = sequelize.define('Product', {
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
   description: {
     type: DataTypes.TEXT,
-    allowNull: false
+    allowNull: true
   },
   price: {
     type: DataTypes.FLOAT,
-    allowNull: false,
+    allowNull: true,
     validate: {
       min: 0
     }
   },
   categoryId: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: true
   }
 }, {
-  timestamps: true // Adds createdAt & updatedAt
+  timestamps: true
 });
 
-module.exports = Product;
+export default Product; // ✅ Use export default
