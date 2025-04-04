@@ -13,7 +13,7 @@ const PRODUCT = sequelize.define(
   {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false, 
       validate: {
         notNull: {
           msg: "Name is required",
@@ -26,22 +26,14 @@ const PRODUCT = sequelize.define(
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Description is required",
-        },
-      },
+      allowNull: true, 
     },
     price: {
       type: DataTypes.FLOAT,
-      allowNull: false,
+      allowNull: true, 
       validate: {
-        notNull: {
-          msg: "Price is required",
-        },
         isPositive(value) {
-          if (value <= 0) {
+          if (value !== null && value <= 0) {
             throw new Error("Price must be a positive number");
           }
         },
@@ -49,11 +41,8 @@ const PRODUCT = sequelize.define(
     },
     categoryId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true, 
       validate: {
-        notNull: {
-          msg: "Category ID is required",
-        },
         isInt: {
           msg: "Category ID must be an integer",
         },
@@ -65,7 +54,5 @@ const PRODUCT = sequelize.define(
     timestamps: false,
   }
 );
-
-sequelize.sync();
 
 export default PRODUCT;

@@ -1,5 +1,19 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../db/index.js';  // Ensure this path is correct
+import { Sequelize, DataTypes } from 'sequelize';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load environment variables
+
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  logging: false,
+});
+
+try {
+  await sequelize.authenticate();
+  console.log('Database connected');
+} catch (error) {
+  console.error('Database connection error:', error);
+}
 
 const Product = sequelize.define('Product', {
   id: {
@@ -9,25 +23,25 @@ const Product = sequelize.define('Product', {
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true, 
   },
   description: {
     type: DataTypes.TEXT,
-    allowNull: false
+    allowNull: true
   },
   price: {
     type: DataTypes.FLOAT,
-    allowNull: false,
+    allowNull: true, 
     validate: {
       min: 0
     }
   },
   categoryId: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: true, 
   }
 }, {
-  timestamps: true // Adds createdAt & updatedAt
+  timestamps: true
 });
 
 export default Product;
