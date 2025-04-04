@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-import sequelize from './db/index.js';  // Ensure this path is correct
+import { DataTypes } from 'sequelize';
+import sequelize from '../db/index.js';  // Ensure this path is correct
 
 const Product = sequelize.define('Product', {
   id: {
@@ -30,4 +30,4 @@ const Product = sequelize.define('Product', {
   timestamps: true // Adds createdAt & updatedAt
 });
 
-module.exports = Product;
+export default Product;
