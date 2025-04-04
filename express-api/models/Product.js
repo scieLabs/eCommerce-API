@@ -23,7 +23,7 @@ const Product = sequelize.define('Product', {
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: true, // ✅ Name should not be null
+    allowNull: true, 
   },
   description: {
     type: DataTypes.TEXT,
@@ -31,14 +31,14 @@ const Product = sequelize.define('Product', {
   },
   price: {
     type: DataTypes.FLOAT,
-    allowNull: true, // ✅ Price should not be null
+    allowNull: true, 
     validate: {
       min: 0
     }
   },
   categoryId: {
     type: DataTypes.INTEGER,
-    allowNull: true, // If categories are optional, this is fine
+    allowNull: true, 
   }
 }, {
   timestamps: true
